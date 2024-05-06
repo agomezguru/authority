@@ -3,7 +3,6 @@ module github.com/agomezguru/authority
 go 1.20
 
 require (
-	github.com/agomezguru/authority v0.0.1
 	github.com/goravel/framework v1.13.1
 	github.com/stretchr/testify v1.8.4
 )
