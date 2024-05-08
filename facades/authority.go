@@ -4,15 +4,14 @@ import (
 	"log"
 
 	authority "github.com/agomezguru/authority"
-	"github.com/agomezguru/authority/contracts"
 )
 
-func Authority() contracts.Authority {
+func Authority() error {
 	instance, err := authority.App.Make(authority.Binding)
 	if err != nil {
 		log.Fatalln(err)
 		return nil
 	}
 
-	return instance.(contracts.Authority)
+	return instance.(error)
 }

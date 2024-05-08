@@ -4,7 +4,7 @@ import (
 	"github.com/goravel/framework/contracts/foundation"
 )
 
-const Binding = "hello"
+const Binding = "agomezguru.authority"
 
 var App foundation.Application
 

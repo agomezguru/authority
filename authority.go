@@ -10,8 +10,10 @@ import (
 	"gorm.io/gorm"
 )
 
+//var Driver = &Authority{}
+
 type Authority struct {
-	config   config.Config
+	//config   config.Config
 	instance *authority.Authority
 }
 
@@ -37,10 +39,16 @@ func NewAuthority(config config.Config) (*Authority, error) {
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	//db, err := facades.Orm().Connection(conn).DB()
 	if err != nil {
+		return nil, errors.WithMessage(err, "init database configuration error")
+	}
+	aliveDB, _ := db.DB()
+	pingErr := aliveDB.Ping()
+	if pingErr != nil {
 		return nil, errors.WithMessage(err, "init connection error")
 	}
+
 	auth := authority.New(authority.Options{
-		TablesPrefix: "authority_",
+		TablesPrefix: config.GetString("authority.TablesPrefix"),
 		DB:           db,
 	})
 	return &Authority{
